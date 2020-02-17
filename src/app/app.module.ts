@@ -5,7 +5,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { MatCardModule } from '@angular/material/card';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
-
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { environment } from 'src/environments/environment';
 import { AppRoutingModule } from './app-routing.module';
@@ -15,8 +14,6 @@ import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { UserModule } from './user/user.module';
-
-
 
 @NgModule({
   declarations: [
@@ -33,7 +30,8 @@ import { UserModule } from './user/user.module';
     BookModule,
     BrowserAnimationsModule,
     MatCardModule,
-    UserModule
+    UserModule,
+    FlexLayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -23,7 +23,7 @@ import { UserRoutingModule } from './user-routing.module';
     MatRadioModule,
     MatCardModule,
     ReactiveFormsModule,
-    UserRoutingModule
+    UserRoutingModule,
   ],
   exports: [LoginComponent, RegisterComponent, CartComponent]
 })
