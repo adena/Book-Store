@@ -1,0 +1,27 @@
+mat-card-actions{
+  text-align: center;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.add-book-card {
+  object-position: center;
+  margin: 20px auto;
+max-width: 50%;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.col {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.col:last-child {
+  margin-right: 0;
+}

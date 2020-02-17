@@ -1,0 +1,115 @@
+<form [formGroup]="addForm" novalidate (ngSubmit)="onSubmit()">
+  <mat-card class="add-book-card">
+    <mat-card-header>
+      <mat-card-title>Adding a Book</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Title" formControlName="title">
+          </mat-form-field>
+          <mat-error *ngIf="addForm.controls['title'].hasError('required')">
+            Title is <strong>required</strong>
+          </mat-error>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Author" formControlName="author">
+            <mat-error *ngIf="addForm.controls['author'].hasError('required')">
+              Author is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Image URL" formControlName="imageLink">
+            <mat-error *ngIf="addForm.controls['imageLink'].hasError('required')">
+              Link is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput maxlength="4" placeholder="Year" type="number" formControlName="year">
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Price" type="number" step="0.01" formControlName="price">
+            <mat-error *ngIf="addForm.controls['price'].hasError('required')">
+              Price is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <textarea matInput placeholder="Description" formControlName="description"></textarea>
+            <mat-error *ngIf="addForm.controls['description'].hasError('required')">
+              Description is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <mat-select placeholder="Country" formControlName="country">
+              <mat-option *ngFor="let country of countries" [value]="country.name">
+                {{ country.name }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="addForm.controls['country'].hasError('required')">
+              Country is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row" *ngIf="!additionalInfo">
+        <div class="col">
+          <button mat-button type="button" (click)="additionalInfo = !additionalInfo">
+            + Add Language, Link and Pages
+          </button>
+        </div>
+      </div>
+      <div *ngIf="additionalInfo">
+        <div class="row">
+          <div class="col">
+            <mat-form-field class="full-width">
+              <input matInput placeholder="Language" type="text" formControlName="language">
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <mat-form-field class="full-width">
+              <input matInput placeholder="Link" type="text" formControlName="link">
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <mat-form-field class="full-width">
+              <input matInput placeholder="Pages" type="number" formControlName="pages">
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" type="submit" [disabled]="addForm.invalid">Submit</button>
+    </mat-card-actions>
+  </mat-card>
+</form>

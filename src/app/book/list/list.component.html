@@ -1,0 +1,17 @@
+<div class="list">
+    <div class="row">
+
+        <div class="column gallery container" *ngFor="let book of books$ | async">
+            <a [routerLink]="['book', book.id]" (click)=selectBookHandler(book)>
+                <img [src]="book.imageLink" [alt]="book.title" class="responsive">
+                <div class="overlay">
+                    <h3>{{book.title}}</h3>
+                    <p>{{book.author}}</p>
+                    <button [routerLink]="['book', book.id]" type="submit" mat-raised-button
+                        color="primary">Buy</button>
+                </div>
+            </a>
+        </div>
+
+    </div>
+</div>
