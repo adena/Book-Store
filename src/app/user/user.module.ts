@@ -1,20 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
-import { CartComponent } from './cart/cart.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatCardModule } from '@angular/material/card';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { UserRoutingModule } from './user-routing.module';
+import { AdminComponent } from './admin/admin.component';
 
 
 
 @NgModule({
-  declarations: [LoginComponent, RegisterComponent, CartComponent],
+  declarations: [AdminComponent],
   imports: [
     CommonModule,
     MatInputModule,
@@ -24,7 +22,8 @@ import { UserRoutingModule } from './user-routing.module';
     MatCardModule,
     ReactiveFormsModule,
     UserRoutingModule,
+    FormsModule
   ],
-  exports: [LoginComponent, RegisterComponent, CartComponent]
+  exports: [AdminComponent]
 })
 export class UserModule { }

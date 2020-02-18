@@ -1,8 +1,6 @@
 import { RouterModule, Routes } from '@angular/router';
 
-import { RegisterComponent } from './register/register.component';
-import { LoginComponent } from './login/login.component';
-import { CartComponent } from './cart/cart.component';
+import { ListComponent } from '../book/list/list.component';
 
 const routes: Routes = [
     {
@@ -11,18 +9,8 @@ const routes: Routes = [
             {
                 path: '',
                 pathMatch: 'full',
-                component: CartComponent,
+                component: ListComponent,
             },
-            {
-                path: 'login',
-                component: LoginComponent,
-
-            },
-            {
-                path: 'register',
-                component: RegisterComponent,
-
-            }
         ]
     }
 ];
