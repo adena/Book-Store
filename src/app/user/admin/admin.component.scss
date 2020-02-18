@@ -1,18 +1,16 @@
 .full-width {
-  width: 100%;
+  width: 70%;
 }
 
-.shipping-card {
-  min-width: 120px;
+.admin-card {
+  text-align: center;
+  max-width: 40%;
   margin: 20px auto;
 }
 
-.mat-radio-button {
-  display: block;
-  margin: 5px 0;
-}
 
 .row {
+  text-align: center;
   display: flex;
   flex-direction: row;
 }

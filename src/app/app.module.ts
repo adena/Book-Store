@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AngularFireAuth, AngularFireAuthModule } from '@angular/fire/auth';
 import { BrowserModule } from '@angular/platform-browser';
 import { MatCardModule } from '@angular/material/card';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -31,9 +32,10 @@ import { UserModule } from './user/user.module';
     BrowserAnimationsModule,
     MatCardModule,
     UserModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    AngularFireAuthModule
   ],
-  providers: [],
+  providers: [AngularFireAuth, AngularFireAuthModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
