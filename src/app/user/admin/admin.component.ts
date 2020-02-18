@@ -8,6 +8,8 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./admin.component.scss']
 })
 export class AdminComponent {
+  get isLogged() { return this.authService.isLogged; }
+
   loginForm = this.fb.group({
     email: [null, [Validators.required, Validators.email]],
     password: [null, [Validators.required, Validators.minLength(6)]],

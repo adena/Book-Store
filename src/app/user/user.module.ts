@@ -6,7 +6,6 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatCardModule } from '@angular/material/card';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { UserRoutingModule } from './user-routing.module';
 import { AdminComponent } from './admin/admin.component';
 
 
@@ -21,7 +20,6 @@ import { AdminComponent } from './admin/admin.component';
     MatRadioModule,
     MatCardModule,
     ReactiveFormsModule,
-    UserRoutingModule,
     FormsModule
   ],
   exports: [AdminComponent]

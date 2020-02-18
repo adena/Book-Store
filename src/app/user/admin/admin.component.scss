@@ -2,12 +2,15 @@
   width: 70%;
 }
 
-.admin-card {
+.admin-card, .signed-in{
   text-align: center;
   max-width: 40%;
   margin: 20px auto;
 }
 
+.signed-in button{
+  margin-top: 10px;
+}
 
 .row {
   text-align: center;

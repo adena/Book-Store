@@ -9,7 +9,7 @@
           <mat-form-field class="full-width">
             <input matInput placeholder="Title" formControlName="title">
           </mat-form-field>
-          <mat-error *ngIf="addForm.controls['title'].hasError('required')">
+          <mat-error *ngIf="addForm.controls['title'].hasError('required') && addForm.controls['title'].touched">
             Title is <strong>required</strong>
           </mat-error>
         </div>

@@ -1,6 +1,7 @@
 import { RouterModule, Routes } from "@angular/router";
 import { AddComponent } from "./add/add.component";
 import { DetailsComponent } from "./details/details.component";
+import { AuthGuard } from '../auth.guard';
 
 const routes: Routes = [
     {
@@ -14,6 +15,10 @@ const routes: Routes = [
             {
                 path: "add",
                 component: AddComponent,
+                canActivate: [AuthGuard],
+                data: {
+                    isLogged: true
+                }
 
             },
             {

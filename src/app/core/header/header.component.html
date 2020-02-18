@@ -5,9 +5,9 @@
     <div class="flex-spacer"></div>
     <div class="button-row">
         <a mat-button routerLink="">Books</a>
-        <a mat-button routerLink="/book/add">Create Book</a>
+        <a mat-button routerLink="/book/add" *ngIf="isLogged">Add Book</a>
         <a mat-button routerLink="/book/details">Contacts</a>
-        <a mat-button routerLink="/user/admin">Admin</a>
+        <a mat-button routerLink="admin">Admin</a>
         <button mat-icon-button aria-label="icon-button with a shopping_carticon">
             <mat-icon>shopping_cart</mat-icon>
         </button>
