@@ -1,8 +1,31 @@
 .details-card {
   max-width: 70%;
+  margin: 20px auto;
+  height: auto;
 }
 
 .details-card img {
-max-width: 30%;
-max-height: auto;
+max-width: 15%;
+height: auto;
+}
+
+mat-card-content{
+  margin-left: 15px;
+}
+
+.mat-list .mat-list-item {
+  height: auto;
+}
+
+.mat-list-item{
+margin-top: 15px;
+}
+
+mat-divider{
+  max-width: 80%;
+  display: block;
+   margin: 5px 45px;
+   border-top-width: 2px;
+   border-top-style: solid;
+   border-top-color: rgba(0,0,0,.12);
 }

@@ -2,15 +2,34 @@
   width: 70%;
 }
 
-.admin-card, .signed-in{
+.admin-card{
   text-align: center;
   max-width: 40%;
   margin: 20px auto;
 }
 
-.signed-in button{
-  margin-top: 10px;
+.signed-in{
+  width: 100%;
+  height: 100%;
 }
+
+.signed-in mat-card{
+  height: 100%;
+}
+
+body > app-root > app-admin > div > mat-card > mat-card-header > div > mat-card-title{
+padding-top: 20px;
+}
+
+.signed-in mat-card-header{
+  justify-content: space-between;
+}
+
+.signed-in mat-card h2{
+  text-align: center;
+  color: #3f51b5;
+}
+
 
 .row {
   text-align: center;
@@ -25,4 +44,25 @@
 
 .col:last-child {
   margin-right: 0;
+}
+
+.example-container {
+  height: 380px;
+  overflow: auto;
+}
+
+table {
+  width: 100%;
+}
+
+tr.mat-footer-row {
+  font-weight: bold;
+}
+
+.mat-table-sticky {
+  border-top: 1px solid #e0e0e0;
+}
+
+.example-container {
+  text-align: left;
 }

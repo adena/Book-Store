@@ -7,7 +7,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatCardModule } from '@angular/material/card';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AdminComponent } from './admin/admin.component';
-
+import { MatTableModule } from '@angular/material/table';
 
 
 @NgModule({
@@ -20,7 +20,8 @@ import { AdminComponent } from './admin/admin.component';
     MatRadioModule,
     MatCardModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    MatTableModule
   ],
   exports: [AdminComponent]
 })

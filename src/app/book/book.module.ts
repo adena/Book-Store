@@ -13,6 +13,9 @@ import { AddComponent } from './add/add.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatListModule } from '@angular/material/list';
+
 import { LayoutModule } from '@angular/cdk/layout';
 import { DetailsComponent } from './details/details.component';
 import { BookRoutingModule } from './book-routing.module';
@@ -34,7 +37,9 @@ import { BookRoutingModule } from './book-routing.module';
     MatMenuModule,
     MatIconModule,
     LayoutModule,
-    BookRoutingModule
+    BookRoutingModule,
+    MatDividerModule,
+    MatListModule
   ],
   exports: [ListComponent, AddComponent, DetailsComponent]
 })

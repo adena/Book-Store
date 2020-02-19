@@ -17,7 +17,6 @@ export class ListComponent implements OnInit {
 
   constructor(private bookService: BookService) { }
 
-  @Output() selectBook: EventEmitter<Book> = new EventEmitter();
 
   ngOnInit() {
     this.books$ = this.bookService.getBooks().pipe(

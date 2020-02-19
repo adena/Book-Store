@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
+import { Observable } from 'rxjs';
+import { shareReplay, reduce, map, takeLast } from 'rxjs/operators';
+import { Book } from 'src/app/shared/book.model';
+import { BookService } from 'src/app/book/book.service';
 
 @Component({
   selector: 'app-admin',
@@ -8,6 +12,11 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./admin.component.scss']
 })
 export class AdminComponent {
+
+  total: number;
+  books$: Observable<Book[]>
+  displayedColumns: string[] = ['title', 'sold', 'price'];
+
   get isLogged() { return this.authService.isLogged; }
 
   loginForm = this.fb.group({
@@ -17,8 +26,12 @@ export class AdminComponent {
 
   constructor(
     public authService: AuthService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private bookService: BookService
   ) {
+    this.books$ = this.bookService.getBooks().pipe(
+      shareReplay(1)
+    );
   }
 
   email: string;
@@ -40,6 +53,9 @@ export class AdminComponent {
     this.authService.SignOut();
   }
 
-  onSubmit() {
+  getTotalCost() {
+    return this.books$.pipe(
+      map(x => x.map(y => y.price * y.sold).reduce((acc, value) => acc + value, 0)));
   }
+
 }

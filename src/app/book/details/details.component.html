@@ -1,25 +1,35 @@
 <mat-card class="details-card">
   <mat-card-header>
-    <img mat-card-image [src]="(sbook|async)?.imageLink" alt="">
+    <mat-card-title> Book details</mat-card-title>
   </mat-card-header>
   <mat-card-content class="details-card-content">
-
-    <h2>
-      {{(sbook|async)?.title}}
-    </h2>
-    <div>
-      <strong>Price: {{(sbook|async)?.price}}</strong>
-    </div>
-    <div>
-      Language: {{(sbook|async)?.language}}
-    </div>
-    <div>
-      {{(sbook|async)?.description}}
-    </div>
+    <mat-list class="mat-list">
+      <mat-list-item>
+        <img mat-card-image [src]="(sbook|async)?.imageLink" alt="">
+      </mat-list-item>
+      <mat-list-item>
+        <h2>
+          {{(sbook|async)?.title}}
+        </h2>
+      </mat-list-item>
+      <mat-list-item>
+        <strong>Price: {{(sbook|async)?.price|currency:'EUR'}}</strong>
+      </mat-list-item>
+      <mat-list-item *ngIf="isLogged">
+        Pieces sold: {{(sbook|async)?.sold}}
+      </mat-list-item>
+      <mat-list-item>
+        Language: {{(sbook|async)?.language}}
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>
+        {{(sbook|async)?.description}}
+      </mat-list-item>
+    </mat-list>
+    <mat-card-actions>
+      <button *ngIf="!isLogged" mat-raised-button color="primary">BUY</button>
+      <button *ngIf="isLogged" mat-raised-button color="primary">EDIT</button>
+      <button *ngIf="isLogged" (click)="deleteBook(this.id)" mat-raised-button color="warn">DELETE</button>
+    </mat-card-actions>
   </mat-card-content>
-  <mat-card-actions>
-    <button *ngIf="!isLogged" mat-button>BUY</button>
-    <button *ngIf="isLogged" mat-button>EDIT</button>
-    <button *ngIf="isLogged" (click)="deleteBook(this.id)" mat-button>DELETE</button>
-  </mat-card-actions>
 </mat-card>

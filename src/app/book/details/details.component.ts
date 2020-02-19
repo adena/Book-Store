@@ -1,11 +1,11 @@
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { Component, OnInit, Input } from '@angular/core';
 import { map, shareReplay } from 'rxjs/operators';
-import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import { BookService } from '../book.service';
 import { Book } from 'src/app/shared/book.model';
 import { AuthService } from 'src/app/user/auth.service';
 import { Observable } from 'rxjs';
+
 
 @Component({
   selector: 'app-details',

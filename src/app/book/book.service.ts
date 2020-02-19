@@ -35,6 +35,7 @@ export class BookService {
           language: c.payload.val().language,
           link: c.payload.val().link,
           pages: c.payload.val().pages,
+          sold: c.payload.val().sold
         } as Book))
       )
     );
@@ -53,7 +54,8 @@ export class BookService {
       link: book.link,
       pages: book.pages,
       price: book.price,
-      description: book.description
+      description: book.description,
+      sold: 0
     });
   }
 
@@ -63,14 +65,13 @@ export class BookService {
   updateBook(id: string, book: Book) {
     this.booksRef.update(id, book);
   }
+
   deleteItem(key: string) {
     this.booksRef.remove(key);
   }
   deleteEverything() {
     this.booksRef.remove();
   }
-
-
 
   selectBook(id: string) {
     this.selectedBookRef = this.db.object(`/books/${id}`);
@@ -87,6 +88,8 @@ export class BookService {
         language: c.payload.val().language,
         link: c.payload.val().link,
         pages: c.payload.val().pages,
+        sold: c.payload.val().sold
+
       } as Book))
     );
 

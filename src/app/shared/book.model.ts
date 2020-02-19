@@ -10,4 +10,5 @@ export class Book {
     pages: number;
     price: number;
     description: string;
+    sold: number;
 }

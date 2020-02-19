@@ -1,5 +1,5 @@
 <div *ngIf="!isLogged">
-  <form [formGroup]="loginForm" novalidate (ngSubmit)="onSubmit()">
+  <form [formGroup]="loginForm" novalidate>
     <mat-card class="admin-card">
       <mat-card-header>
         <mat-card-title>Admin page</mat-card-title>
@@ -36,23 +36,47 @@
   </form>
 </div>
 
-<div *ngIf="isLogged">
-  <mat-card class="signed-in">
+
+<div *ngIf="isLogged" class="signed-in">
+  <mat-card>
     <mat-card-header>
       <mat-card-title>Hello {{ (authService.userData | async)?.email }}</mat-card-title>
+      <mat-card-actions>
+        <button (click)="signOut()" mat-raised-button color="accent">Logout</button>
+      </mat-card-actions>
     </mat-card-header>
 
     <mat-card-content>
 
-      <div class="row">
-        <div class="col">
-          <button routerLink="" mat-raised-button color="primary">See sold Books</button>
-        </div>
+      <h2>Sold books revenues</h2>
+      <div class="example-container mat-elevation-z8">
+        <table mat-table [dataSource]="books$|async">
+
+          <ng-container matColumnDef="title">
+            <th mat-header-cell *matHeaderCellDef> Title </th>
+            <td mat-cell *matCellDef="let book"> {{book.title}} </td>
+            <td mat-footer-cell *matFooterCellDef> Total </td>
+          </ng-container>
+
+          <ng-container matColumnDef="sold">
+            <th mat-header-cell *matHeaderCellDef> Sold pcs. </th>
+            <td mat-cell *matCellDef="let book"> {{book.sold}} </td>
+            <td mat-footer-cell *matFooterCellDef> </td>
+          </ng-container>
+
+          <ng-container matColumnDef="price">
+            <th mat-header-cell *matHeaderCellDef> Price </th>
+            <td mat-cell *matCellDef="let book"> {{book.price }} </td>
+            <td mat-footer-cell *matFooterCellDef> {{getTotalCost()|async|currency:'EUR'}} </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          <tr mat-footer-row *matFooterRowDef="displayedColumns; sticky: true"></tr>
+        </table>
       </div>
     </mat-card-content>
 
-    <mat-card-actions>
-      <button (click)="signOut()" mat-raised-button color="warn">Logout</button>
-    </mat-card-actions>
+
   </mat-card>
 </div>
