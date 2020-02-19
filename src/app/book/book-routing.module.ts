@@ -10,20 +10,23 @@ const routes: Routes = [
             {
                 path: "",
                 pathMatch: "full",
-                redirectTo: "/book/add"
+                redirectTo: "/book/add",
+                runGuardsAndResolvers: 'always',
             },
             {
                 path: "add",
                 component: AddComponent,
                 canActivate: [AuthGuard],
+                runGuardsAndResolvers: 'always',
                 data: {
                     isLogged: true
-                }
+                },
 
             },
             {
                 path: ":id",
                 component: DetailsComponent,
+                runGuardsAndResolvers: 'always',
             }
         ]
     }
