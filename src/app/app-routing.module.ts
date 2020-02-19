@@ -7,13 +7,13 @@ import { AdminComponent } from './user/admin/admin.component';
 
 const routes: Routes = [
   {
-    path: "admin",
-    component: AdminComponent
-  },
-  {
     path: "",
     pathMatch: "full",
     component: ListComponent
+  },
+  {
+    path: "admin",
+    component: AdminComponent
   },
   {
     path: "**",

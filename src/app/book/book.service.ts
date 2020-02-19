@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
+import { AngularFireDatabase, AngularFireList, AngularFireObject } from '@angular/fire/database';
 import { Book } from '../shared/book.model';
-import { tap, map } from 'rxjs/operators';
+import { tap, map, filter, take, find } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import 'firebase/database';
 
 @Injectable({
   providedIn: 'root'
@@ -10,8 +11,8 @@ import { Observable } from 'rxjs';
 export class BookService {
 
   booksRef: AngularFireList<any>;
-  readonly selectedBook: Book;
-  book: Book;
+  selectedBookRef: AngularFireObject<Book>;
+  selectedBook: Observable<any>;
   books: Observable<Book[]>;
 
   constructor(private db: AngularFireDatabase) {
@@ -69,18 +70,29 @@ export class BookService {
     this.booksRef.remove();
   }
 
-  selectBook(book) {
-    (this as any).selectedBook = book;
+
+
+  selectBook(id: string) {
+    this.selectedBookRef = this.db.object(`/books/${id}`);
+    this.selectedBook = this.selectedBookRef.snapshotChanges().pipe(
+      map(c => ({
+        id: c.payload.key,
+        title: c.payload.val().title,
+        author: c.payload.val().author,
+        imageLink: c.payload.val().imageLink,
+        year: c.payload.val().year,
+        country: c.payload.val().country,
+        price: c.payload.val().price,
+        description: c.payload.val().description,
+        language: c.payload.val().language,
+        link: c.payload.val().link,
+        pages: c.payload.val().pages,
+      } as Book))
+    );
+
+    return this.selectedBook;
   }
 }
 
 
-  // updateBook(book: Book) {
-  //   delete book.id;
-  //   this.firestore.doc('books/' + book.id).update(book);
-  // }
 
-  // deleteBook(bookId: string) {
-  //   this.firestore.doc('policies/' + bookId).delete();
-  // }
-// }

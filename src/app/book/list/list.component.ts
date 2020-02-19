@@ -26,8 +26,8 @@ export class ListComponent implements OnInit {
   }
 
   selectBookHandler(book: Book) {
-    //this.selectBook.emit(book);
-    this.bookService.selectBook(book);
-    console.log(book);
+    this.bookService.selectBook(book.id).pipe(
+      shareReplay(1)
+    );
   }
 }
