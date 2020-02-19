@@ -2,6 +2,7 @@ import { RouterModule, Routes } from "@angular/router";
 import { AddComponent } from "./add/add.component";
 import { DetailsComponent } from "./details/details.component";
 import { AuthGuard } from '../auth.guard';
+import { NotFoundComponent } from '../not-found/not-found.component';
 
 const routes: Routes = [
     {
@@ -11,13 +12,11 @@ const routes: Routes = [
                 path: "",
                 pathMatch: "full",
                 redirectTo: "/book/add",
-                runGuardsAndResolvers: 'always',
             },
             {
                 path: "add",
                 component: AddComponent,
                 canActivate: [AuthGuard],
-                runGuardsAndResolvers: 'always',
                 data: {
                     isLogged: true
                 },
@@ -26,8 +25,7 @@ const routes: Routes = [
             {
                 path: ":id",
                 component: DetailsComponent,
-                runGuardsAndResolvers: 'always',
-            }
+            },
         ]
     }
 ];
