@@ -17,7 +17,6 @@ export class ListComponent implements OnInit {
 
   constructor(private bookService: BookService) { }
 
-
   ngOnInit() {
     this.books$ = this.bookService.getBooks().pipe(
       shareReplay(1)

@@ -1,5 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Inject } from '@angular/core';
 import { } from 'googlemaps';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-contact',
@@ -8,8 +9,10 @@ import { } from 'googlemaps';
 })
 export class ContactComponent implements OnInit {
 
-  @ViewChild('gmap') gmapElement: any;
+  @ViewChild('#gmap') public gmap: ElementRef;
   map: google.maps.Map;
+
+  constructor(@Inject(DOCUMENT) document) { }
 
   isTracking = false;
 
@@ -18,17 +21,17 @@ export class ContactComponent implements OnInit {
 
   marker: google.maps.Marker;
 
-  url: string;
-
   ngOnInit() {
+
+  }
+
+  ngAfterContentInit() {
     var mapProp = {
-      center: new google.maps.LatLng(18.5793, 73.8143),
+      center: new google.maps.LatLng(42.710501, 23.263636),
       zoom: 15,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
-    this.map = new google.maps.Map(this.gmapElement.nativeElement, mapProp);
-
-
+    this.map = new google.maps.Map(document.getElementById('gmap'), mapProp);
   }
 
   findMe() {
@@ -90,5 +93,4 @@ export class ContactComponent implements OnInit {
       this.marker.setPosition(location);
     }
   }
-
 }

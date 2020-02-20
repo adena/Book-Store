@@ -15,12 +15,14 @@ import { SharedModule } from './shared/shared.module';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { UserModule } from './user/user.module';
 import { ContactComponent } from './contact/contact.component';
+import { MapComponent } from './map/map.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NotFoundComponent,
-    ContactComponent
+    ContactComponent,
+    MapComponent
   ],
   imports: [
     BrowserModule,
