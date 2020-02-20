@@ -1,24 +1,23 @@
 <div class="container">
     <div style="text-align:center">
         <h1>
-            Geolocation
+            Contacts
         </h1>
     </div>
 
-    <div class="alert alert-warning">
-        Note: Once Track me is enabled, refresh page to enable Find me feature!
-    </div>
     <div>
         <div>
-            <button [disabled]="isTracking" class="btn btn-primary" (click)="findMe()">Find me</button>
-            <button class="btn btn-primary" (click)="trackMe()">Track me</button>
+            <h2>Our Office:</h2>
+            Bulgaria, Sofia, jk. Liulin 7, bl.735, of.5
         </div>
+
         <div class="text-white">
+            <h2>Your location:</h2>
             <span>Latitude: {{currentLat}}</span>
             <span>Longitude: {{currentLong}}</span>
         </div>
-    </div>
-    <div>
-        <div #gmap id="gmap" style="width:100%;height:300px"></div>
+        <div>
+            <div #gmap id="gmap" style="width:100%;height:300px"></div>
+        </div>
     </div>
 </div>

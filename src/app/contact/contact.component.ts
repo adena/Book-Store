@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef, Inject } from '@angular/core';
 import { } from 'googlemaps';
 import { DOCUMENT } from '@angular/common';
+import { setupTestingRouter } from '@angular/router/testing';
 
 @Component({
   selector: 'app-contact',
@@ -19,78 +20,101 @@ export class ContactComponent implements OnInit {
   currentLat: any;
   currentLong: any;
 
+  location: google.maps.LatLng;
+  locationOffice: google.maps.LatLng;
   marker: google.maps.Marker;
-
+  markerOffice: google.maps.Marker;
+  directionsService: google.maps.DirectionsService;
+  directionsDisplay: google.maps.DirectionsRenderer;
   ngOnInit() {
 
   }
 
-  ngAfterContentInit() {
-    var mapProp = {
-      center: new google.maps.LatLng(42.710501, 23.263636),
-      zoom: 15,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-    };
-    this.map = new google.maps.Map(document.getElementById('gmap'), mapProp);
-  }
 
-  findMe() {
+
+  ngAfterContentInit() {
+
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
         this.showPosition(position);
+        // this.getRoute();
       });
     } else {
       alert("Geolocation is not supported by this browser.");
     }
+
+
+    var mapProp = {
+      zoom: 15,
+      mapTypeId: google.maps.MapTypeId.ROADMAP,
+
+    };
+
+    this.map = new google.maps.Map(document.getElementById('gmap'), mapProp);
   }
+
+
 
   showPosition(position) {
+    var bounds = new google.maps.LatLngBounds();
+    this.locationOffice = new google.maps.LatLng(42.711966, 23.266702);
+    bounds.extend(this.locationOffice);
+
+    this.markerOffice = new google.maps.Marker({
+      position: this.locationOffice,
+      map: this.map,
+      label: {
+        color: 'violet',
+        fontWeight: 'bold',
+        text: 'Our Office',
+      },
+    });
+
     this.currentLat = position.coords.latitude;
     this.currentLong = position.coords.longitude;
 
-    let location = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-    this.map.panTo(location);
+    this.location = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+    // this.map.panTo(this.location);
 
-    if (!this.marker) {
-      this.marker = new google.maps.Marker({
-        position: location,
-        map: this.map,
-        title: 'Got you!'
-      });
-    }
-    else {
-      this.marker.setPosition(location);
-    }
+    this.marker = new google.maps.Marker({
+      position: this.location,
+      map: this.map,
+      label: {
+        color: 'red',
+        fontWeight: 'bold',
+        text: 'Your Location',
+      },
+
+    });
+    this.marker.setPosition(this.location);
+
+    bounds.extend(this.location);
+
+    this.map.fitBounds(bounds);
+
+
   }
 
-  trackMe() {
-    if (navigator.geolocation) {
-      this.isTracking = true;
-      navigator.geolocation.watchPosition((position) => {
-        this.showTrackingPosition(position);
-      });
-    } else {
-      alert("Geolocation is not supported by this browser.");
-    }
-  }
+  // getRoute() {
+  //   var request = {
+  //     origin: this.location,
+  //     destination: this.locationOffice,
+  //     travelMode: google.maps.TravelMode.DRIVING
+  //   };
 
-  showTrackingPosition(position) {
-    console.log(`tracking postion:  ${position.coords.latitude} - ${position.coords.longitude}`);
-    this.currentLat = position.coords.latitude;
-    this.currentLong = position.coords.longitude;
+  //   this.directionsService = new google.maps.DirectionsService();
+  //   this.directionsDisplay = new google.maps.DirectionsRenderer();
+  //   this.directionsDisplay.setMap(this.map);
 
-    let location = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-    this.map.panTo(location);
+  //   this.directionsService.route(request, function (response, status) {
+  //     if (status == google.maps.DirectionsStatus.OK) {
+  //       this.directionsDisplay.setDirections(response);
+  //     }
+  //     else {
+  //       alert("Directions Request failed:" + status);
+  //     }
 
-    if (!this.marker) {
-      this.marker = new google.maps.Marker({
-        position: location,
-        map: this.map,
-        title: 'Got you!'
-      });
-    }
-    else {
-      this.marker.setPosition(location);
-    }
-  }
+  //   });
+  // }
+
 }
