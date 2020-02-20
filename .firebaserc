@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "books-bf53b"
+  },
+  "targets": {
+    "books-bf53b": {
+      "hosting": {
+        "store": [
+          "books-bf53b"
+        ]
+      }
+    }
+  }
+}

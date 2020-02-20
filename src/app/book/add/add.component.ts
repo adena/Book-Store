@@ -33,7 +33,6 @@ export class AddComponent {
 
   onSubmit() {
 
-    console.log(this.addForm.value);
     this.bookService.addBook(this.addForm.value);
 
   }
