@@ -19,6 +19,8 @@ import { MatListModule } from '@angular/material/list';
 import { LayoutModule } from '@angular/cdk/layout';
 import { DetailsComponent } from './details/details.component';
 import { BookRoutingModule } from './book-routing.module';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -39,7 +41,9 @@ import { BookRoutingModule } from './book-routing.module';
     LayoutModule,
     BookRoutingModule,
     MatDividerModule,
-    MatListModule
+    MatListModule,
+    BrowserModule,
+    BrowserAnimationsModule
   ],
   exports: [ListComponent, AddComponent, DetailsComponent]
 })

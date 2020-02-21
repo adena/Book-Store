@@ -37,7 +37,7 @@ export class ContactComponent implements OnInit {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
         this.showPosition(position);
-        // this.getRoute();
+
       });
     } else {
       alert("Geolocation is not supported by this browser.");
@@ -51,6 +51,9 @@ export class ContactComponent implements OnInit {
     };
 
     this.map = new google.maps.Map(document.getElementById('gmap'), mapProp);
+
+
+    // this.getRoute();
   }
 
 
@@ -64,7 +67,7 @@ export class ContactComponent implements OnInit {
       position: this.locationOffice,
       map: this.map,
       label: {
-        color: 'violet',
+        color: 'red',
         fontWeight: 'bold',
         text: 'Our Office',
       },
@@ -97,14 +100,18 @@ export class ContactComponent implements OnInit {
 
   // getRoute() {
   //   var request = {
-  //     origin: this.location,
-  //     destination: this.locationOffice,
+  //     origin: new google.maps.LatLng(42.711966, 23.266702),
+  //     destination: new google.maps.LatLng(42.7103529, 23.293486899999998),
   //     travelMode: google.maps.TravelMode.DRIVING
   //   };
 
   //   this.directionsService = new google.maps.DirectionsService();
+  //   // var rendererOptions = {
+  //   //   map: this.map
+  //   // }
   //   this.directionsDisplay = new google.maps.DirectionsRenderer();
   //   this.directionsDisplay.setMap(this.map);
+
 
   //   this.directionsService.route(request, function (response, status) {
   //     if (status == google.maps.DirectionsStatus.OK) {
