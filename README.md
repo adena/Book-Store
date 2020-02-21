@@ -1,5 +1,6 @@
 Book Store
 This project is a Book Store application built with Angular using firebase as a database, using CRUD operations, authentication, routing.
+Hosted on firebase. 
 
 Development server
 Make sure you have the Angular CLI installed globally.
