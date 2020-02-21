@@ -25,6 +25,7 @@
   .column img {
     margin-top: 1px;
     vertical-align: middle;
+    object-fit: cover;
   }
 
   * {box-sizing: border-box;}
@@ -39,7 +40,7 @@
 .image {
   max-height: 100%; 
   max-width: 100%; 
-  object-fit: contain
+  object-fit: cover!important
 }
 
   .overlay {
@@ -77,7 +78,7 @@ div.gallery {
   div.gallery img {
     max-height: 100%; 
     max-width: 100%; 
-    object-fit: contain
+    object-fit: cover
   }
   
 

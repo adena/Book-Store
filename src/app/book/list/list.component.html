@@ -1,7 +1,7 @@
 <div class="list">
     <div class="row">
 
-        <div class="column gallery container" *ngFor="let book of books$ | async">
+        <div class="column gallery container responsive" *ngFor=" let book of books$ | async">
             <a [routerLink]="['book', book.id]" (click)=selectBookHandler(book)>
                 <img [src]="book.imageLink" [alt]="book.title" class="responsive">
                 <div class="overlay">

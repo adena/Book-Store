@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { countries } from 'src/app/shared/countries';
 import { BookService } from '../book.service';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/user/auth.service';
 
 @Component({
   selector: 'app-add',
@@ -29,7 +30,12 @@ export class AddComponent {
   countries = countries;
 
 
-  constructor(private fb: FormBuilder, private bookService: BookService, private router: Router) { }
+  constructor(private fb: FormBuilder, private bookService: BookService,
+    private router: Router, private authService: AuthService) {
+    if (!this.authService.isLogged) {
+      this.router.navigate(['/admin']);
+    }
+  }
 
   onSubmit() {
 
