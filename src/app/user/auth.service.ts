@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { take, map } from 'rxjs/operators';
+import { ToastrService, GlobalConfig } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+
+  options: GlobalConfig;
 
   currentUser: { email: string; password: string } = null;
   userData: Observable<firebase.User>;
@@ -16,8 +18,9 @@ export class AuthService {
     return !!this.currentUser;
   }
 
-  constructor(private angularFireAuth: AngularFireAuth) {
+  constructor(private angularFireAuth: AngularFireAuth, private toastr: ToastrService) {
     this.userData = angularFireAuth.authState;
+
   }
 
   SignUp(email: string, password: string) {
@@ -40,10 +43,11 @@ export class AuthService {
         localStorage.setItem('current-user', JSON.stringify({ email, password }));
         this.currentUser = { email, password };
 
-        console.log('You are Successfully logged in!', this.isLogged);
+        this.handleSuccess("You successfully signed in!")
       })
       .catch(err => {
         console.log('Something is wrong:', err.message);
+        this.handleError(err);
       });
   }
 
@@ -54,7 +58,24 @@ export class AuthService {
       .then(res => {
         this.currentUser = null;
         localStorage.removeItem('current-user');
-        console.log(this.isLogged);
+        this.handleSuccess("You successfully signed out!")
       });
+  }
+
+
+  handleSuccess(msg: string) {
+    var options = {
+      "positionClass": "toast-top-center",
+    }
+
+    this.toastr.success(msg, 'Success', options);
+  }
+
+  handleError(err) {
+    var options = {
+      "positionClass": "toast-top-center",
+    }
+
+    this.toastr.error(err, 'Error', options)
   }
 }

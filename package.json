@@ -25,6 +25,7 @@
     "@types/firebase": "^3.2.1",
     "@types/googlemaps": "^3.39.2",
     "firebase": "^7.8.1",
+    "ngx-toastr": "^12.0.0",
     "rxjs": "^6.5.3",
     "tslib": "^1.10.0",
     "zone.js": "^0.10.2"

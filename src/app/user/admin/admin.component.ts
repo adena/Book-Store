@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { Observable } from 'rxjs';
-import { shareReplay, reduce, map, takeLast } from 'rxjs/operators';
+import { shareReplay, reduce, map, takeLast, catchError } from 'rxjs/operators';
 import { Book } from 'src/app/shared/book.model';
 import { BookService } from 'src/app/book/book.service';
 
@@ -30,7 +30,7 @@ export class AdminComponent {
     private bookService: BookService
   ) {
     this.books$ = this.bookService.getBooks().pipe(
-      shareReplay(1)
+      shareReplay(1),
     );
   }
 

@@ -3,8 +3,9 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireAuth, AngularFireAuthModule } from '@angular/fire/auth';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+
 import { MatCardModule } from '@angular/material/card';
 import { environment } from 'src/environments/environment';
 import { AppRoutingModule } from './app-routing.module';
@@ -33,7 +34,8 @@ import { ContactComponent } from './contact/contact.component';
     BrowserAnimationsModule,
     MatCardModule,
     UserModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    ToastrModule.forRoot()
   ],
   providers: [AngularFireAuth, AngularFireAuthModule],
   bootstrap: [AppComponent]
