@@ -40,7 +40,7 @@
 <div *ngIf="isLogged" class="signed-in">
   <mat-card>
     <mat-card-header>
-      <mat-card-title>Hello {{ (authService.userData | async)?.email }}</mat-card-title>
+      <mat-card-title>Hello {{ (authService.userData| async)?.email }}</mat-card-title>
       <mat-card-actions>
         <button (click)="signOut()" mat-raised-button color="accent">Logout</button>
       </mat-card-actions>

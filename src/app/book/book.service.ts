@@ -4,6 +4,8 @@ import { Book } from '../shared/book.model';
 import { tap, map, filter, take, find } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import 'firebase/database';
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +17,7 @@ export class BookService {
   selectedBook: Observable<any>;
   books: Observable<Book[]>;
 
-  constructor(private db: AngularFireDatabase) {
+  constructor(private db: AngularFireDatabase, private toastr: ToastrService, private router: Router) {
 
     this.booksRef = this.db.list('/books');
   }
@@ -56,7 +58,15 @@ export class BookService {
       price: book.price,
       description: book.description,
       sold: 0
+    }).then(
+      () => {
+        this.router.navigate(['']);
+        this.handleSuccess("Book added successfully");
+      }
+    ).catch(err => {
+      this.handleError(err);
     });
+
   }
 
   addBook(book: Book) {
@@ -95,6 +105,25 @@ export class BookService {
 
     return this.selectedBook;
   }
+
+
+
+  handleSuccess(msg: string) {
+    var options = {
+      "positionClass": "toast-top-center",
+    }
+
+    this.toastr.success(msg, 'Success', options);
+  }
+
+  handleError(err) {
+    var options = {
+      "positionClass": "toast-top-center",
+    }
+
+    this.toastr.error(err, 'Error', options)
+  }
+
 }
 
 

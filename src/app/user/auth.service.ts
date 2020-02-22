@@ -10,17 +10,34 @@ export class AuthService {
 
   options: GlobalConfig;
 
-  currentUser: { email: string; password: string } = null;
-  userData: Observable<firebase.User>;
+  // currentUser: { email: string; password: string } = null;
+
+  public userData: Observable<firebase.User>;
+  private userDetails: firebase.User = null;
 
 
   get isLogged() {
-    return !!this.currentUser;
+    // return !!this.currentUser;
+
+    if (this.userDetails == null) {
+      return false;
+    } else {
+      return true;
+    }
   }
 
   constructor(private angularFireAuth: AngularFireAuth, private toastr: ToastrService) {
     this.userData = angularFireAuth.authState;
-
+    this.userData.subscribe(
+      (user) => {
+        if (user) {
+          this.userDetails = user;
+        }
+        else {
+          this.userDetails = null;
+        }
+      }
+    );
   }
 
   SignUp(email: string, password: string) {
@@ -36,12 +53,13 @@ export class AuthService {
   }
 
   SignIn(email: string, password: string) {
+
     this.angularFireAuth
       .auth
       .signInWithEmailAndPassword(email, password)
       .then(res => {
-        localStorage.setItem('current-user', JSON.stringify({ email, password }));
-        this.currentUser = { email, password };
+        // localStorage.setItem('current-user', JSON.stringify({ email, password }));
+        // this.currentUser = { email, password };
 
         this.handleSuccess("You successfully signed in!")
       })
@@ -56,8 +74,8 @@ export class AuthService {
       .auth
       .signOut()
       .then(res => {
-        this.currentUser = null;
-        localStorage.removeItem('current-user');
+        // this.currentUser = null;
+        // localStorage.removeItem('current-user');
         this.handleSuccess("You successfully signed out!")
       });
   }
